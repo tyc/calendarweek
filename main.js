@@ -19,6 +19,13 @@ app.on('ready', () => {
 	// time to print today's date and the calendar week number for 
 	// that date.
 	mainWindow.webContents.on('did-finish-load', () => {
+		// grab today's date.
+		var today_date = new Date()
+		var display_date = today_date.getDate()
+		var display_day = today_date.getDay()
+
+		var display_string = display_day + " " + display_date
+
 	})
 
 	mainWindow.webContents.openDevTools()
