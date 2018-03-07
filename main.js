@@ -1,9 +1,10 @@
 const electron = require('electron')
+const path = require('path')
+const fs = require('fs')
+
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
-const path = require('path')
 const dialog = electron.dialog
-const fs = require('fs')
 
 fileName = ''
 
@@ -21,10 +22,16 @@ app.on('ready', () => {
 	mainWindow.webContents.on('did-finish-load', () => {
 		// grab today's date.
 		var today_date = new Date()
+		var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+		var months = ["January", "February", "March", "April", " May", "June", "July", "August", "September", "October", "November", "December"]
 		var display_date = today_date.getDate()
 		var display_day = today_date.getDay()
 
-		var display_string = display_day + " " + display_date
+		var display_string = days[today_date.getDay()] + ", " + today_date.getDate() + " " + months[today_date.getMonth()] + " " + today_date.getFullYear()
+
+		mainWindow.webContents.send('Update-calendar-date', display_string)
+
+		console.log("display_string = " + display_string )
 
 	})
 
