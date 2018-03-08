@@ -1,4 +1,7 @@
 const electron = require('electron')
+
+// moment is a date time software package
+const moment = require('moment')
 const path = require('path')
 const fs = require('fs')
 
@@ -6,7 +9,6 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const dialog = electron.dialog
 
-fileName = ''
 
 
 app.on('ready', () => {
@@ -21,18 +23,16 @@ app.on('ready', () => {
 	// that date.
 	mainWindow.webContents.on('did-finish-load', () => {
 		// grab today's date.
-		var today_date = new Date()
-		var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-		var months = ["January", "February", "March", "April", " May", "June", "July", "August", "September", "October", "November", "December"]
-		var display_date = today_date.getDate()
-		var display_day = today_date.getDay()
+		var now_date = moment().format('dddd DD MMMM YYYY')
+		var now_cw = "CW " + moment().format('WW')
 
-		var display_string = days[today_date.getDay()] + ", " + today_date.getDate() + " " + months[today_date.getMonth()] + " " + today_date.getFullYear()
+		// mainWindow.webContents.send('Update-calendar-date', now_cw)
 
-		mainWindow.webContents.send('Update-calendar-date', display_string)
+		mainWindow.webContents.send('Update-calendar-cw', now_cw)
+		mainWindow.webContents.send('Update-calendar-date', now_date)
 
-		console.log("display_string = " + display_string )
-
+		console.log("now_date = " + now_date )
+		console.log("now_cw = " + now_cw )
 	})
 
 	mainWindow.webContents.openDevTools()
