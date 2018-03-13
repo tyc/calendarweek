@@ -9,7 +9,25 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const dialog = electron.dialog
 
+// this function returns the position in date grid
+// for a given date. It retunrs the co-ordinate pair 
+// from this function. If the date is out of range,
+// it returns a "NaN".
+function calc_date_square(ref_date) {
 
+	retVal = NaN;
+	
+	if (moment(ref_date).isValid != false) {
+		var now_date = moment(ref_date);
+		var day = moment(ref_date);
+
+		switch (day) {
+			
+		}
+	}
+
+
+}
 
 app.on('ready', () => {
 	console.log('The application is ready.')
