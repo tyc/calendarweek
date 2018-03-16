@@ -52,11 +52,11 @@ textarea, input, div, button { outline: none; }
   grid-template-areas: 
   "calendar_week_cell calendar_week_cell calendar_week_cell calendar_week_cell calendar_week_cell calendar_week_cell calendar_week_cell calendar_week_cell"
   "calendar_date_cell calendar_date_cell calendar_date_cell calendar_date_cell calendar_date_cell calendar_date_cell calendar_date_cell calendar_date_cell"
-  "date_cell_00 date_cell_01 date_cell_02 date_cell_03 date_cell_04 date_cell_05 date_cell_06 date_cell_07"
-  "date_cell_10 date_cell_11 date_cell_12 date_cell_13 date_cell_14 date_cell_15 date_cell_16 date_cell_17"
-  "date_cell_20 date_cell_21 date_cell_22 date_cell_23 date_cell_24 date_cell_25 date_cell_26 date_cell_27"
-  "date_cell_30 date_cell_31 date_cell_32 date_cell_33 date_cell_34 date_cell_35 date_cell_36 date_cell_37"
-  "date_cell_40 date_cell_41 date_cell_42 date_cell_43 date_cell_44 date_cell_45 date_cell_46 date_cell_47"
+  "cw_cell_00 date_cell_00 date_cell_01 date_cell_02 date_cell_03 date_cell_04 date_cell_05 date_cell_06"
+  "cw_cell_10 date_cell_10 date_cell_11 date_cell_12 date_cell_13 date_cell_14 date_cell_15 date_cell_16"
+  "cw_cell_20 date_cell_20 date_cell_21 date_cell_22 date_cell_23 date_cell_24 date_cell_25 date_cell_26"
+  "cw_cell_30 date_cell_30 date_cell_31 date_cell_32 date_cell_33 date_cell_34 date_cell_35 date_cell_36"
+  "cw_cell_40 date_cell_40 date_cell_41 date_cell_42 date_cell_43 date_cell_44 date_cell_45 date_cell_46"
 }
 
 .content {
@@ -66,6 +66,11 @@ textarea, input, div, button { outline: none; }
 
 .calendar_week_cell { grid-area: calendar_week_cell; }
 .calendar_date_cell { grid-area: calendar_date_cell; }
+.cw_cell_00 {  grid-area: cw_cell_00; }
+.cw_cell_10 {  grid-area: cw_cell_10; }
+.cw_cell_20 {  grid-area: cw_cell_20; }
+.cw_cell_30 {  grid-area: cw_cell_30; }
+.cw_cell_40 {  grid-area: cw_cell_40; }
 .date_cell_00 {  grid-area: date_cell_00; }
 .date_cell_01 {  grid-area: date_cell_01; }
 .date_cell_02 {  grid-area: date_cell_02; }
@@ -73,7 +78,6 @@ textarea, input, div, button { outline: none; }
 .date_cell_04 {  grid-area: date_cell_04; }
 .date_cell_05 {  grid-area: date_cell_05; }
 .date_cell_06 {  grid-area: date_cell_06; }
-.date_cell_07 {  grid-area: date_cell_07; }
 .date_cell_10 {  grid-area: date_cell_10; }
 .date_cell_11 {  grid-area: date_cell_11; }
 .date_cell_12 {  grid-area: date_cell_12; }
@@ -81,15 +85,13 @@ textarea, input, div, button { outline: none; }
 .date_cell_14 {  grid-area: date_cell_14; }
 .date_cell_15 {  grid-area: date_cell_15; }
 .date_cell_16 {  grid-area: date_cell_16; }
-.date_cell_17 {  grid-area: date_cell_17; }
-.date_cell_20 {  grid-area: date_cell_20; }
+.date_cell_27 {  grid-area: date_cell_20; }
 .date_cell_21 {  grid-area: date_cell_21; }
 .date_cell_22 {  grid-area: date_cell_22; }
 .date_cell_23 {  grid-area: date_cell_23; }
 .date_cell_24 {  grid-area: date_cell_24; }
 .date_cell_25 {  grid-area: date_cell_25; }
 .date_cell_26 {  grid-area: date_cell_26; }
-.date_cell_27 {  grid-area: date_cell_27; }
 .date_cell_30 {  grid-area: date_cell_30; }
 .date_cell_31 {  grid-area: date_cell_31; }
 .date_cell_32 {  grid-area: date_cell_32; }
@@ -97,7 +99,6 @@ textarea, input, div, button { outline: none; }
 .date_cell_34 {  grid-area: date_cell_34; }
 .date_cell_35 {  grid-area: date_cell_35; }
 .date_cell_36 {  grid-area: date_cell_36; }
-.date_cell_37 {  grid-area: date_cell_37; }
 .date_cell_40 {  grid-area: date_cell_40; }
 .date_cell_41 {  grid-area: date_cell_41; }
 .date_cell_42 {  grid-area: date_cell_42; }
@@ -105,6 +106,5 @@ textarea, input, div, button { outline: none; }
 .date_cell_44 {  grid-area: date_cell_44; }
 .date_cell_45 {  grid-area: date_cell_45; }
 .date_cell_46 {  grid-area: date_cell_46; }
-.date_cell_47 {  grid-area: date_cell_47; }
 
 
