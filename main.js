@@ -99,11 +99,9 @@ function outta_way() {
 app.on('ready', () => {
 
 	mainWindow = new BrowserWindow({alwaysOnTop: false})
+	mainWindow.loadURL('file://'+path.join(__dirname, 'index.html'))
 
-	console.log('The application is ready.')
-
-	console.log(array_dates[27].linear_pos);
-
+	// grab the today's date.
 	var date_today = moment(moment());
 	var date_1st = moment(date_today);
 	var date_found = false;
