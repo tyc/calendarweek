@@ -22,45 +22,45 @@ const dialog = electron.dialog
 
 /* max 35 days in a displayed month */
 var array_dates = [];
-array_dates.push({xy_pos:"date_cell_00", weekday_num: 1, weekday:"Monday", 		linear_pos:0, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_01", weekday_num: 2, weekday:"Tuesday", 		linear_pos:1, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_02", weekday_num: 3, weekday:"Wednedsay", 	linear_pos:2, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_03", weekday_num: 4, weekday:"Thursday", 	linear_pos:3, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_04", weekday_num: 5, weekday:"Friday", 		linear_pos:4, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_05", weekday_num: 6, weekday:"Saturday", 	linear_pos:5, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_06", weekday_num: 0, weekday:"Sunday", 		linear_pos:6, date_day: 0, date_data: "", CW_data: 0});
+array_dates.push({xy_pos:"date_cell_00", weekday_num: 1, weekday:"Monday", 		linear_pos:0, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_00'});
+array_dates.push({xy_pos:"date_cell_01", weekday_num: 2, weekday:"Tuesday", 	linear_pos:1, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_01'});
+array_dates.push({xy_pos:"date_cell_02", weekday_num: 3, weekday:"Wednedsay", 	linear_pos:2, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_02'});
+array_dates.push({xy_pos:"date_cell_03", weekday_num: 4, weekday:"Thursday", 	linear_pos:3, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_03'});
+array_dates.push({xy_pos:"date_cell_04", weekday_num: 5, weekday:"Friday", 		linear_pos:4, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_04'});
+array_dates.push({xy_pos:"date_cell_05", weekday_num: 6, weekday:"Saturday", 	linear_pos:5, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_05'});
+array_dates.push({xy_pos:"date_cell_06", weekday_num: 0, weekday:"Sunday", 		linear_pos:6, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_06'});
 
-array_dates.push({xy_pos:"date_cell_10", weekday_num: 1, weekday:"Monday", 		linear_pos:7, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_11", weekday_num: 2, weekday:"Tuesday", 		linear_pos:8, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_12", weekday_num: 3, weekday:"Wednedsay", 	linear_pos:9, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_13", weekday_num: 4, weekday:"Thursday", 	linear_pos:10, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_14", weekday_num: 5, weekday:"Friday", 		linear_pos:11, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_15", weekday_num: 6, weekday:"Saturday", 	linear_pos:12, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_16", weekday_num: 0, weekday:"Sunday", 		linear_pos:13, date_day: 0, date_data: "", CW_data: 0});
+array_dates.push({xy_pos:"date_cell_10", weekday_num: 1, weekday:"Monday", 		linear_pos:7, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_10'});
+array_dates.push({xy_pos:"date_cell_11", weekday_num: 2, weekday:"Tuesday", 	linear_pos:8, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_11'});
+array_dates.push({xy_pos:"date_cell_12", weekday_num: 3, weekday:"Wednedsay", 	linear_pos:9, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_12'});
+array_dates.push({xy_pos:"date_cell_13", weekday_num: 4, weekday:"Thursday", 	linear_pos:10, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_13'});
+array_dates.push({xy_pos:"date_cell_14", weekday_num: 5, weekday:"Friday", 		linear_pos:11, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_14'});
+array_dates.push({xy_pos:"date_cell_15", weekday_num: 6, weekday:"Saturday", 	linear_pos:12, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_15'});
+array_dates.push({xy_pos:"date_cell_16", weekday_num: 0, weekday:"Sunday", 		linear_pos:13, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_16'});
 
-array_dates.push({xy_pos:"date_cell_20", weekday_num: 1, weekday:"Monday", 		linear_pos:14, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_21", weekday_num: 2, weekday:"Tuesday",		linear_pos:15, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_22", weekday_num: 3, weekday:"Wednesday",	linear_pos:16, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_23", weekday_num: 4, weekday:"Thursday",	linear_pos:17, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_24", weekday_num: 5, weekday:"Friday",		linear_pos:18, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_25", weekday_num: 6, weekday:"Saturday",	linear_pos:19, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_26", weekday_num: 0, weekday:"Sunday",		linear_pos:20, date_day: 0, date_data: "", CW_data: 0});
+array_dates.push({xy_pos:"date_cell_20", weekday_num: 1, weekday:"Monday", 		linear_pos:14, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_20'});
+array_dates.push({xy_pos:"date_cell_21", weekday_num: 2, weekday:"Tuesday",		linear_pos:15, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_21'});
+array_dates.push({xy_pos:"date_cell_22", weekday_num: 3, weekday:"Wednesday",	linear_pos:16, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_22'});
+array_dates.push({xy_pos:"date_cell_23", weekday_num: 4, weekday:"Thursday",	linear_pos:17, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_23'});
+array_dates.push({xy_pos:"date_cell_24", weekday_num: 5, weekday:"Friday",		linear_pos:18, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_24'});
+array_dates.push({xy_pos:"date_cell_25", weekday_num: 6, weekday:"Saturday",	linear_pos:19, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_25'});
+array_dates.push({xy_pos:"date_cell_26", weekday_num: 0, weekday:"Sunday",		linear_pos:20, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_26'});
 
-array_dates.push({xy_pos:"date_cell_30", weekday_num: 1, weekday:"Monday",		linear_pos:21, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_31", weekday_num: 2, weekday:"Tuesday",		linear_pos:22, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_32", weekday_num: 3, weekday:"Wednesday",	linear_pos:23, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_33", weekday_num: 4, weekday:"Thursday",	linear_pos:24, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_34", weekday_num: 5, weekday:"Friday",		linear_pos:25, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_35", weekday_num: 6, weekday:"Saturday",	linear_pos:26, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_36", weekday_num: 0, weekday:"Sunday",		linear_pos:27, date_day: 0, date_data: "", CW_data: 0});
+array_dates.push({xy_pos:"date_cell_30", weekday_num: 1, weekday:"Monday",		linear_pos:21, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_30'});
+array_dates.push({xy_pos:"date_cell_31", weekday_num: 2, weekday:"Tuesday",		linear_pos:22, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_31'});
+array_dates.push({xy_pos:"date_cell_32", weekday_num: 3, weekday:"Wednesday",	linear_pos:23, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_32'});
+array_dates.push({xy_pos:"date_cell_33", weekday_num: 4, weekday:"Thursday",	linear_pos:24, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_33'});
+array_dates.push({xy_pos:"date_cell_34", weekday_num: 5, weekday:"Friday",		linear_pos:25, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_34'});
+array_dates.push({xy_pos:"date_cell_35", weekday_num: 6, weekday:"Saturday",	linear_pos:26, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_35'});
+array_dates.push({xy_pos:"date_cell_36", weekday_num: 0, weekday:"Sunday",		linear_pos:27, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_36'});
 
-array_dates.push({xy_pos:"date_cell_40", weekday_num: 1, weekday:"Monday",		linear_pos:28, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_41", weekday_num: 2, weekday:"Tuesday",		linear_pos:29, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_42", weekday_num: 3, weekday:"Wednesday",	linear_pos:30, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_43", weekday_num: 4, weekday:"Thursday",	linear_pos:31, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_44", weekday_num: 5, weekday:"Friday",		linear_pos:32, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_45", weekday_num: 6, weekday:"Saturday",	linear_pos:33, date_day: 0, date_data: "", CW_data: 0});
-array_dates.push({xy_pos:"date_cell_46", weekday_num: 0, weekday:"Sunday",		linear_pos:34, date_day: 0, date_data: "", CW_data: 0});
+array_dates.push({xy_pos:"date_cell_40", weekday_num: 1, weekday:"Monday",		linear_pos:28, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_40'});
+array_dates.push({xy_pos:"date_cell_41", weekday_num: 2, weekday:"Tuesday",		linear_pos:29, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_41'});
+array_dates.push({xy_pos:"date_cell_42", weekday_num: 3, weekday:"Wednesday",	linear_pos:30, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_42'});
+array_dates.push({xy_pos:"date_cell_43", weekday_num: 4, weekday:"Thursday",	linear_pos:31, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_43'});
+array_dates.push({xy_pos:"date_cell_44", weekday_num: 5, weekday:"Friday",		linear_pos:32, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_44'});
+array_dates.push({xy_pos:"date_cell_45", weekday_num: 6, weekday:"Saturday",	linear_pos:33, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_45'});
+array_dates.push({xy_pos:"date_cell_46", weekday_num: 0, weekday:"Sunday",		linear_pos:34, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_46'});
  
  
 
@@ -100,6 +100,9 @@ app.on('ready', () => {
 
 	mainWindow = new BrowserWindow({alwaysOnTop: false})
 	mainWindow.loadURL('file://'+path.join(__dirname, 'index.html'))
+	// the main window is finish loading up the index.html. Now it is
+	// time to print today's date and the calendar week number for 
+	// that date.
 
 	// grab the today's date.
 	var date_today = moment(moment());
@@ -113,6 +116,7 @@ app.on('ready', () => {
 	for (i = 0; i <= 34; i++) {
 		if (date_found == false) {
 			if (array_dates[i].weekday_num == date_1st.day()) {
+				array_dates[i].date_day = date_1st.date();
 				array_dates[i].date_data = date_1st.toString();
 				date_found = true;
 				i_copy = i;
@@ -121,17 +125,33 @@ app.on('ready', () => {
 			date_1st.add(1, 'days');
 
 			// the date will roll over automatically to the next month
+			array_dates[i].date_day = date_1st.date();
 			array_dates[i].date_data = date_1st.toString();
 		}
 	}
 
 	// back fill the dates in the previous month
 	date_1st = moment(date_today);
-	date_1st.date(1);	
+	date_1st.date(1);
+	i_copy--;
 	for (i = i_copy; i > 0; i--) {
 		date_1st.subtract(1, 'days');
+		array_dates[i].date_day = date_1st.date();
 		array_dates[i].date_data = date_1st.toString();		
 	}
+
+	date_1st.subtract(1, 'days');
+	array_dates[i].date_day = date_1st.date();
+	array_dates[i].date_data = date_1st.toString();	
+
+	mainWindow.webContents.on('did-finish-load', () => {
+		var i;
+
+		for (i=0; i<=34; i++) {
+			console.log("sending data " + array_dates[i].date_day.toString());
+			mainWindow.webContents.send(array_dates[i].event , array_dates[i].date_day.toString());	
+		}
+	})
 
 	mainWindow.on('closed', () => {
 		mainWindow = null
