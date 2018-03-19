@@ -80,8 +80,7 @@ function outta_way() {
 
 		// mainWindow.webContents.send('Update-calendar-date', now_cw)
 
-		mainWindow.webContents.send('Update-calendar-cw', now_cw)
-		mainWindow.webContents.send('Update-calendar-date', now_date)
+
 
 		console.log("now_date = " + now_date )
 		console.log("now_cw = " + now_cw )
@@ -163,6 +162,13 @@ app.on('ready', () => {
 		mainWindow.webContents.send('Update-cw_cell_20', "CW"+array_dates[14].CW_data.toString());	
 		mainWindow.webContents.send('Update-cw_cell_30', "CW"+array_dates[21].CW_data.toString());	
 		mainWindow.webContents.send('Update-cw_cell_40', "CW"+array_dates[28].CW_data.toString());	
+
+		var now_date = moment().format('dddd DD MMMM YYYY')
+		var now_cw = "CW " + moment().format('WW')
+
+		// send across the two headers
+		mainWindow.webContents.send('Update-calendar-cw', "CW"+date_today.format('WW'));
+		mainWindow.webContents.send('Update-calendar-date', date_today.format('dddd DD MMMM YYYY'));
 
 	})
 

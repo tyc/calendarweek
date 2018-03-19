@@ -7,8 +7,8 @@ const shell = electron.shell
 
 const $ = selector => document.querySelector(selector)
 
-const $Today_DateTime=$('.Today_DateTime')
-const $CalWeek=$('.CalWeek');
+const $calendar_date_cell=$('.calendar_date_cell')
+const $calendar_week_cell=$('.calendar_week_cell');
 
 const $cw_cell_00=$('.cw_cell_00');
 const $cw_cell_10=$('.cw_cell_10');
@@ -65,17 +65,8 @@ const $date_cell_45=$('.date_cell_45');
 const $date_cell_46=$('.date_cell_46');
 
 
-ipc.on('Update-calendar-cw', (event, content) => {
-    $CalWeek.innerHTML=content
-    console.log("The content is " + content + ". calendar week")
-})
-
-ipc.on('Update-calendar-date', (event, content) => {
-    // $Today_DateTime.innerHTML=content
-    $date_cell_00.innerHTML=content[0].date_data.toString();
-    console.log("The content is " + content[0].date_data + ". Calendar date")
-})
-
+ipc.on('Update-calendar-cw', (event, content) => {    $calendar_week_cell.innerHTML=content})
+ipc.on('Update-calendar-date', (event, content) => {    $calendar_date_cell.innerHTML=content;})
 
 ipc.on('Update-cw_cell_00', (event, content) => {    $cw_cell_00.innerHTML=content;})
 ipc.on('Update-cw_cell_10', (event, content) => {    $cw_cell_10.innerHTML=content;})
