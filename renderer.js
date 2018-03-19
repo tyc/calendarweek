@@ -9,6 +9,13 @@ const $ = selector => document.querySelector(selector)
 
 const $Today_DateTime=$('.Today_DateTime')
 const $CalWeek=$('.CalWeek');
+
+const $cw_cell_00=$('.cw_cell_00');
+const $cw_cell_10=$('.cw_cell_10');
+const $cw_cell_20=$('.cw_cell_20');
+const $cw_cell_30=$('.cw_cell_30');
+const $cw_cell_40=$('.cw_cell_40');
+
 const $date_cell_00=$('.date_cell_00');
 const $date_cell_01=$('.date_cell_01');
 const $date_cell_02=$('.date_cell_02');
@@ -68,6 +75,13 @@ ipc.on('Update-calendar-date', (event, content) => {
     $date_cell_00.innerHTML=content[0].date_data.toString();
     console.log("The content is " + content[0].date_data + ". Calendar date")
 })
+
+
+ipc.on('Update-cw_cell_00', (event, content) => {    $cw_cell_00.innerHTML=content;})
+ipc.on('Update-cw_cell_10', (event, content) => {    $cw_cell_10.innerHTML=content;})
+ipc.on('Update-cw_cell_20', (event, content) => {    $cw_cell_20.innerHTML=content;})
+ipc.on('Update-cw_cell_30', (event, content) => {    $cw_cell_30.innerHTML=content;})
+ipc.on('Update-cw_cell_40', (event, content) => {    $cw_cell_40.innerHTML=content;})
 
 ipc.on('Update-date_cell_00', (event, content) => {    $date_cell_00.innerHTML=content;})
 ipc.on('Update-date_cell_01', (event, content) => {    $date_cell_01.innerHTML=content;})

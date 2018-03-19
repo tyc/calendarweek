@@ -117,6 +117,7 @@ app.on('ready', () => {
 		if (date_found == false) {
 			if (array_dates[i].weekday_num == date_1st.day()) {
 				array_dates[i].date_day = date_1st.date();
+				array_dates[i].CW_data = date_1st.isoWeek();
 				array_dates[i].date_data = date_1st.toString();
 				date_found = true;
 				i_copy = i;
@@ -126,6 +127,7 @@ app.on('ready', () => {
 
 			// the date will roll over automatically to the next month
 			array_dates[i].date_day = date_1st.date();
+			array_dates[i].CW_data = date_1st.isoWeek();
 			array_dates[i].date_data = date_1st.toString();
 		}
 	}
@@ -137,20 +139,31 @@ app.on('ready', () => {
 	for (i = i_copy; i > 0; i--) {
 		date_1st.subtract(1, 'days');
 		array_dates[i].date_day = date_1st.date();
+		array_dates[i].CW_data = date_1st.isoWeek();
 		array_dates[i].date_data = date_1st.toString();		
 	}
 
 	date_1st.subtract(1, 'days');
 	array_dates[i].date_day = date_1st.date();
+	array_dates[i].CW_data = date_1st.isoWeek();
 	array_dates[i].date_data = date_1st.toString();	
 
 	mainWindow.webContents.on('did-finish-load', () => {
+		
+		// loop through out array and print it out.
 		var i;
-
 		for (i=0; i<=34; i++) {
 			console.log("sending data " + array_dates[i].date_day.toString());
 			mainWindow.webContents.send(array_dates[i].event , array_dates[i].date_day.toString());	
 		}
+
+		// send across the CW number for the monday of the week.
+		mainWindow.webContents.send('Update-cw_cell_00', "CW"+array_dates[0].CW_data.toString());	
+		mainWindow.webContents.send('Update-cw_cell_10', "CW"+array_dates[7].CW_data.toString());	
+		mainWindow.webContents.send('Update-cw_cell_20', "CW"+array_dates[14].CW_data.toString());	
+		mainWindow.webContents.send('Update-cw_cell_30', "CW"+array_dates[21].CW_data.toString());	
+		mainWindow.webContents.send('Update-cw_cell_40', "CW"+array_dates[28].CW_data.toString());	
+
 	})
 
 	mainWindow.on('closed', () => {
