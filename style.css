@@ -3,6 +3,7 @@ html {
 }
 
 html, body {
+  font-family: Arial, Helvetica, sans-serif;
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -12,47 +13,70 @@ html, body {
   box-sizing: inherit;
 }
 
+.dayweek {
+  background-color: #444;
+  color: #fff;
+  padding: 20px;
+  font-size: 80%;
+  text-align: center; 
+  vertical-align: middle; 
+}
+
+.calendarweek {
+  background-color: rgb(52, 190, 40);
+  color: #fff;
+  padding: 20px;
+  font-size: 80%;
+  text-align: center; 
+  vertical-align: middle; 
+}
+
+.day {
+  background-color: #a7a4a4;
+  color: #444;
+  padding: 20px;
+  font-size: 80%;
+  text-align: center; 
+  vertical-align: middle; 
+}
 
 body {
   margin: 0;
   padding: 0;
-
 }
 
-textarea, input, div, button { outline: none; }
-
 .calendar_date_cell {
+ /* 
   font-size: 15pt;
   border: 1px solid blue;
   text-align: center;
   vertical-align: middle;
-}
-
-.calendar_week_cell {
-  font-size: 15pt;
-  font-weight: bold;
-  border: 1px solid green;
+*/
+  width: 100%;
+  height: 60px;
   text-align: center;
   vertical-align: middle;
+  background-color: #FF6860;
+  padding: 18px 0;
+  /* this gives it the rounded corners */
+  -webkit-border-radius: 12px 12px 0px 0px;
+  -moz-border-radius: 12px 12px 0px 0px; 
+  border-radius: 12px 12px 0px 0px;
+  font-size: 20pt;
 }
 
-.grid div{
- /*
-  * Adding the generic display attributes for the body of the
-  * text
-  */
-  font-family: Arial, Helvetica, sans-serif;
-  padding: 10px;
+.grid div:hover {
+  background-color: #797676;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+  grid-gap : 3px;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+
   grid-template-areas: 
-  "calendar_week_cell calendar_week_cell calendar_week_cell calendar_week_cell calendar_week_cell calendar_week_cell calendar_week_cell calendar_week_cell"
-  "calendar_date_cell calendar_date_cell calendar_date_cell calendar_date_cell calendar_date_cell calendar_date_cell calendar_date_cell calendar_date_cell"
-    ".          dayweek_mon  dayweek_wed  dayweek_tue  dayweek_thu  dayweek_fri  dayweek_sat  dayweek_sun"
+    ".          dayweek_mon  dayweek_tue  dayweek_wed  dayweek_thu  dayweek_fri  dayweek_sat  dayweek_sun"
   "cw_cell_00 date_cell_00 date_cell_01 date_cell_02 date_cell_03 date_cell_04 date_cell_05 date_cell_06"
   "cw_cell_10 date_cell_10 date_cell_11 date_cell_12 date_cell_13 date_cell_14 date_cell_15 date_cell_16"
   "cw_cell_20 date_cell_20 date_cell_21 date_cell_22 date_cell_23 date_cell_24 date_cell_25 date_cell_26"
@@ -60,21 +84,15 @@ textarea, input, div, button { outline: none; }
   "cw_cell_40 date_cell_40 date_cell_41 date_cell_42 date_cell_43 date_cell_44 date_cell_45 date_cell_46";
 }
 
-.content {
-  height: 100%;
-  display: flex;
-}
-
 .calendar_week_cell { grid-area: calendar_week_cell; }
 .calendar_date_cell { grid-area: calendar_date_cell; }
-.empty {grid-area: empty; }
-.dayweek_mon {grid-area: dayweek_mon; }
-.dayweek_tue {grid-area: dayweek_tue; }
-.dayweek_wed {grid-area: dayweek_wed; }
-.dayweek_thu {grid-area: dayweek_thu; }
-.dayweek_fri {grid-area: dayweek_fri; }
-.dayweek_sat {grid-area: dayweek_sat; }
-.dayweek_sun {grid-area: dayweek_sun; }
+.mon {grid-area: dayweek_mon; }
+.tue {grid-area: dayweek_tue; }
+.wed {grid-area: dayweek_wed; }
+.thu {grid-area: dayweek_thu; }
+.fri {grid-area: dayweek_fri; }
+.sat {grid-area: dayweek_sat; }
+.sun {grid-area: dayweek_sun; }
 .cw_cell_00 {  grid-area: cw_cell_00; }
 .cw_cell_10 {  grid-area: cw_cell_10; }
 .cw_cell_20 {  grid-area: cw_cell_20; }
