@@ -16,7 +16,7 @@ html, body {
 .dayweek {
   background-color: #444;
   color: #fff;
-  padding: 20px;
+  padding: 10px;
   font-size: 80%;
   text-align: center; 
   vertical-align: middle; 
@@ -25,7 +25,7 @@ html, body {
 .calendarweek {
   background-color: rgb(52, 190, 40);
   color: #fff;
-  padding: 20px;
+  padding: 10px;
   font-size: 80%;
   text-align: center; 
   vertical-align: middle; 
@@ -34,7 +34,7 @@ html, body {
 .day {
   background-color: #a7a4a4;
   color: #444;
-  padding: 20px;
+  padding: 10px;
   font-size: 80%;
   text-align: center; 
   vertical-align: middle; 
@@ -53,16 +53,11 @@ body {
   vertical-align: middle;
 */
   width: 100%;
-  height: 60px;
   text-align: center;
   vertical-align: middle;
   background-color: #FF6860;
-  padding: 18px 0;
-  /* this gives it the rounded corners */
-  -webkit-border-radius: 12px 12px 0px 0px;
-  -moz-border-radius: 12px 12px 0px 0px; 
-  border-radius: 12px 12px 0px 0px;
-  font-size: 20pt;
+  padding: 10px;
+  font-size: 250%; 
 }
 
 .grid div:hover {

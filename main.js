@@ -97,16 +97,25 @@ function outta_way() {
 
 app.on('ready', () => {
 
-	mainWindow = new BrowserWindow({alwaysOnTop: false})
+	mainWindow = new BrowserWindow({
+		alwaysOnTop: false,
+		width: 400,
+		height: 312,
+		resizable: false,
+		title: "YetAnotherCalenderWeek"
+	});
 	mainWindow.loadURL('file://'+path.join(__dirname, 'index.html'))
 	// the main window is finish loading up the index.html. Now it is
 	// time to print today's date and the calendar week number for 
 	// that date.
 
+	// mainWindow.webContents.openDevTools();
+
 	// grab the today's date.
 	var date_today = moment(moment());
 	var date_1st = moment(date_today);
 	var date_found = false;
+	var today_index = 0;
 
 	// set the date to be the 1st day of the month
 	date_1st.date(1);
@@ -123,6 +132,10 @@ app.on('ready', () => {
 			}	
 		} else {
 			date_1st.add(1, 'days');
+
+			if ((date_1st.isSame(date_today)) == true) {
+				today_index = i;
+			}
 
 			// the date will roll over automatically to the next month
 			array_dates[i].date_day = date_1st.date();
@@ -152,9 +165,11 @@ app.on('ready', () => {
 		// loop through out array and print it out.
 		var i;
 		for (i=0; i<=34; i++) {
-			console.log("sending data " + array_dates[i].date_day.toString());
-			mainWindow.webContents.send(array_dates[i].event , array_dates[i].date_day.toString());	
+			// console.log("sending data " + array_dates[i].date_day.toString());
+			mainWindow.webContents.send("Update-date_cell_array" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
 		}
+
+		mainWindow.webContents.send("Update-date_cell_array_today" , array_dates[today_index].linear_pos, array_dates[today_index].date_day.toString());	
 
 		// send across the CW number for the monday of the week.
 		mainWindow.webContents.send('Update-cw_cell_00', "CW"+array_dates[0].CW_data.toString());	
@@ -163,13 +178,9 @@ app.on('ready', () => {
 		mainWindow.webContents.send('Update-cw_cell_30', "CW"+array_dates[21].CW_data.toString());	
 		mainWindow.webContents.send('Update-cw_cell_40', "CW"+array_dates[28].CW_data.toString());	
 
-		var now_date = moment().format('dddd DD MMMM YYYY')
-		var now_cw = "CW " + moment().format('WW')
-
 		// send across the two headers
 		mainWindow.webContents.send('Update-calendar-cw', "CW"+date_today.format('WW'));
-		mainWindow.webContents.send('Update-calendar-date', date_today.format('dddd DD MMMM YYYY'));
-
+		mainWindow.webContents.send('Update-calendar-date', date_today.format('MMMM YYYY'));
 	})
 
 	mainWindow.on('closed', () => {
