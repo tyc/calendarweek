@@ -54,14 +54,13 @@ $date_cell_array.push({cell_ref: $('.date_cell_45'), cell_id: "date_cell_45"});
 $date_cell_array.push({cell_ref: $('.date_cell_46'), cell_id: "date_cell_46"});
 
 ipc.on('Update-date_cell_array_today', (event, id, content) => {    
-
     var myElement = document.getElementById($date_cell_array[id].cell_id);
-
-    console.log("the id is " + id);
-
     myElement.style.backgroundColor="lightblue";
+})
 
-    // $date_cell_array[id].cell_ref.style.backgroundColour="lightblue";
+ipc.on('Update-out_of_month', (event, id, content) => {
+    var myElement = document.getElementById($date_cell_array[id].cell_id);
+    myElement.style.backgroundColor="lightgreen";
 })
 
 ipc.on('Update-date_cell_array', (event, id, content) => {    $date_cell_array[id].cell_ref.innerHTML=content;})

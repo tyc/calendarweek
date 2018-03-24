@@ -112,10 +112,13 @@ app.on('ready', () => {
 	// mainWindow.webContents.openDevTools();
 
 	// grab the today's date.
-	var date_today = moment(moment());
+	// var date_today = moment(moment());
+	var date_today = moment("12-25-1995", "MM-DD-YYYY");
 	var date_1st = moment(date_today);
 	var date_found = false;
 	var today_index = 0;
+	var i_first_day = 0;
+	var i_last_day = 0;
 
 	// set the date to be the 1st day of the month
 	date_1st.date(1);
@@ -123,12 +126,20 @@ app.on('ready', () => {
 	// find the first date and start filling.
 	for (i = 0; i <= 34; i++) {
 		if (date_found == false) {
+			/* look for the first day by check that day in the
+			 * first row matches the day of the first day.
+			 * Mark index values of
+			 * i_first_day = i;
+			 * i_last_day = i_first_day.date_1st.daysInMonth();
+			 */
 			if (array_dates[i].weekday_num == date_1st.day()) {
 				array_dates[i].date_day = date_1st.date();
 				array_dates[i].CW_data = date_1st.isoWeek();
 				array_dates[i].date_data = date_1st.toString();
 				date_found = true;
 				i_copy = i;
+				i_first_day = i_copy;
+				i_last_day = i_first_day + date_1st.daysInMonth();
 			}	
 		} else {
 			date_1st.add(1, 'days');
@@ -168,6 +179,15 @@ app.on('ready', () => {
 			// console.log("sending data " + array_dates[i].date_day.toString());
 			mainWindow.webContents.send("Update-date_cell_array" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
 		}
+
+		// change the colour of the days that are out of the current month
+		for (i=0; i<i_first_day; i++) {
+			mainWindow.webContents.send("Update-out_of_month" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
+		}
+		for (i=i_last_day; i<=34; i++) {
+			mainWindow.webContents.send("Update-out_of_month" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
+		}
+
 
 		mainWindow.webContents.send("Update-date_cell_array_today" , array_dates[today_index].linear_pos, array_dates[today_index].date_day.toString());	
 
