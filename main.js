@@ -112,8 +112,8 @@ app.on('ready', () => {
 	// mainWindow.webContents.openDevTools();
 
 	// grab the today's date.
-	// var date_today = moment(moment());
-	var date_today = moment("12-25-1995", "MM-DD-YYYY");
+	var date_today = moment(moment());
+	// var date_today = moment("12-25-1995", "MM-DD-YYYY");
 	var date_1st = moment(date_today);
 	var date_found = false;
 	var today_index = 0;

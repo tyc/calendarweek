@@ -55,12 +55,14 @@ $date_cell_array.push({cell_ref: $('.date_cell_46'), cell_id: "date_cell_46"});
 
 ipc.on('Update-date_cell_array_today', (event, id, content) => {    
     var myElement = document.getElementById($date_cell_array[id].cell_id);
-    myElement.style.backgroundColor="lightblue";
+    myElement.style.backgroundColor="#AED6F1"; // light blue colour
 })
 
 ipc.on('Update-out_of_month', (event, id, content) => {
     var myElement = document.getElementById($date_cell_array[id].cell_id);
-    myElement.style.backgroundColor="lightgreen";
+    myElement.style.backgroundColor="#D5F5E3"; // very light green
+    myElement.style.color="#CACFD2"; // light grey
+    
 })
 
 ipc.on('Update-date_cell_array', (event, id, content) => {    $date_cell_array[id].cell_ref.innerHTML=content;})

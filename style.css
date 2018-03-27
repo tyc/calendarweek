@@ -23,8 +23,8 @@ html, body {
 }
 
 .calendarweek {
-  background-color: rgb(52, 190, 40);
-  color: #fff;
+  background-color: rgb(171, 235, 198);
+  color:  rgb(0, 0, 0);
   padding: 10px;
   font-size: 80%;
   text-align: center; 
@@ -32,8 +32,8 @@ html, body {
 }
 
 .day {
-  background-color: #a7a4a4;
-  color: #444;
+  background-color: rgb(088,214,141);
+  color: rgb(0, 0, 0);
   padding: 10px;
   font-size: 80%;
   text-align: center; 
