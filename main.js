@@ -8,6 +8,89 @@ const fs = require('fs')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const dialog = electron.dialog
+const Menu = electron.Menu
+
+const menu_template = [
+	{
+	  label: 'File',
+	  submenu: [
+		{
+		  label: 'Open...',
+		  accelerator: 'CmdOrCtrl+O',
+		  click () { openFile() }
+		},
+		{
+		  label: 'Save...',
+		  accelerator: 'CmdOrCtrl+S',
+		  click () {
+			// We can't call saveFile(content) directly because we need to get
+			// the content from the renderer process. So, send a message to the
+			// renderer, telling it we want to save the file.
+			mainWindow.webContents.send('save-file')
+		  }
+		}
+	  ]
+	},
+	{
+	  label: 'Developer',
+	  submenu: [
+		{
+		  label: 'Toggle Developer Tools',
+		  accelerator: process.platform === 'darwin'
+			? 'Alt+Command+I'
+			: 'Ctrl+Shift+I',
+		  click () { mainWindow.webContents.toggleDevTools() }
+		}
+	  ]
+	}
+  ]
+  
+  if (process.platform === 'darwin') {
+	const name = app.getName()
+	menu_template.unshift({
+	  label: name,
+	  submenu: [
+		{
+		  label: 'About ' + name,
+		  role: 'about'
+		},
+		{
+		  type: 'separator'
+		},
+		{
+		  label: 'Services',
+		  role: 'services',
+		  submenu: []
+		},
+		{
+		  type: 'separator'
+		},
+		{
+		  label: 'Hide ' + name,
+		  accelerator: 'Command+H',
+		  role: 'hide'
+		},
+		{
+		  label: 'Hide Others',
+		  accelerator: 'Command+Alt+H',
+		  role: 'hideothers'
+		},
+		{
+		  label: 'Show All',
+		  role: 'unhide'
+		},
+		{
+		  type: 'separator'
+		},
+		{
+		  label: 'Quit',
+		  accelerator: 'Command+Q',
+		  click () { app.quit() }
+		}
+	  ]
+	})
+  }
+  
 
 /*
  * struct for holding data for calender page.
@@ -119,6 +202,11 @@ app.on('ready', () => {
 	var today_index = 0;
 	var i_first_day = 0;
 	var i_last_day = 0;
+
+
+	const menu = Menu.buildFromTemplate(menu_template);
+	Menu.setApplicationMenu(menu);
+
 
 	// set the date to be the 1st day of the month
 	date_1st.date(1);
