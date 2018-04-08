@@ -145,7 +145,13 @@ array_dates.push({xy_pos:"date_cell_44", weekday_num: 5, weekday:"Friday",		line
 array_dates.push({xy_pos:"date_cell_45", weekday_num: 6, weekday:"Saturday",	linear_pos:33, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_45'});
 array_dates.push({xy_pos:"date_cell_46", weekday_num: 0, weekday:"Sunday",		linear_pos:34, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_46'});
  
- 
+array_dates.push({xy_pos:"date_cell_50", weekday_num: 1, weekday:"Monday",		linear_pos:35, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_50'});
+array_dates.push({xy_pos:"date_cell_51", weekday_num: 2, weekday:"Tuesday",		linear_pos:36, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_51'});
+array_dates.push({xy_pos:"date_cell_52", weekday_num: 3, weekday:"Wednesday",	linear_pos:37, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_52'});
+array_dates.push({xy_pos:"date_cell_53", weekday_num: 4, weekday:"Thursday",	linear_pos:38, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_53'});
+array_dates.push({xy_pos:"date_cell_54", weekday_num: 5, weekday:"Friday",		linear_pos:39, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_54'});
+array_dates.push({xy_pos:"date_cell_55", weekday_num: 6, weekday:"Saturday",	linear_pos:40, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_55'});
+array_dates.push({xy_pos:"date_cell_56", weekday_num: 0, weekday:"Sunday",		linear_pos:41, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_56'}); 
 
 
 function outta_way() {
@@ -183,7 +189,7 @@ app.on('ready', () => {
 	mainWindow = new BrowserWindow({
 		alwaysOnTop: false,
 		width: 400,
-		height: 312,
+		height: 349,
 		resizable: false,
 		title: "YetAnotherCalenderWeek"
 	});
@@ -212,7 +218,7 @@ app.on('ready', () => {
 	date_1st.date(1);
 
 	// find the first date and start filling.
-	for (i = 0; i <= 34; i++) {
+	for (i = 0; i <= 41; i++) {
 		if (date_found == false) {
 			/* look for the first day by check that day in the
 			 * first row matches the day of the first day.
@@ -263,7 +269,7 @@ app.on('ready', () => {
 		
 		// loop through out array and print it out.
 		var i;
-		for (i=0; i<=34; i++) {
+		for (i=0; i<=41; i++) {
 			// console.log("sending data " + array_dates[i].date_day.toString());
 			mainWindow.webContents.send("Update-date_cell_array" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
 		}
@@ -272,7 +278,7 @@ app.on('ready', () => {
 		for (i=0; i<i_first_day; i++) {
 			mainWindow.webContents.send("Update-out_of_month" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
 		}
-		for (i=i_last_day; i<=34; i++) {
+		for (i=i_last_day; i<=41; i++) {
 			mainWindow.webContents.send("Update-out_of_month" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
 		}
 
@@ -285,6 +291,7 @@ app.on('ready', () => {
 		mainWindow.webContents.send('Update-cw_cell_20', "CW"+array_dates[14].CW_data.toString());	
 		mainWindow.webContents.send('Update-cw_cell_30', "CW"+array_dates[21].CW_data.toString());	
 		mainWindow.webContents.send('Update-cw_cell_40', "CW"+array_dates[28].CW_data.toString());	
+		mainWindow.webContents.send('Update-cw_cell_50', "CW"+array_dates[35].CW_data.toString());	
 
 		// send across the two headers
 		mainWindow.webContents.send('Update-calendar-cw', "CW"+date_today.format('WW'));

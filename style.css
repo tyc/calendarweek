@@ -76,7 +76,8 @@ body {
   "cw_cell_10 date_cell_10 date_cell_11 date_cell_12 date_cell_13 date_cell_14 date_cell_15 date_cell_16"
   "cw_cell_20 date_cell_20 date_cell_21 date_cell_22 date_cell_23 date_cell_24 date_cell_25 date_cell_26"
   "cw_cell_30 date_cell_30 date_cell_31 date_cell_32 date_cell_33 date_cell_34 date_cell_35 date_cell_36"
-  "cw_cell_40 date_cell_40 date_cell_41 date_cell_42 date_cell_43 date_cell_44 date_cell_45 date_cell_46";
+  "cw_cell_40 date_cell_40 date_cell_41 date_cell_42 date_cell_43 date_cell_44 date_cell_45 date_cell_46"
+  "cw_cell_50 date_cell_50 date_cell_51 date_cell_52 date_cell_53 date_cell_54 date_cell_55 date_cell_56";
 }
 
 .calendar_week_cell { grid-area: calendar_week_cell; }
@@ -93,6 +94,7 @@ body {
 .cw_cell_20 {  grid-area: cw_cell_20; }
 .cw_cell_30 {  grid-area: cw_cell_30; }
 .cw_cell_40 {  grid-area: cw_cell_40; }
+.cw_cell_50 {  grid-area: cw_cell_50; }
 .date_cell_00 {  grid-area: date_cell_00; }
 .date_cell_01 {  grid-area: date_cell_01; }
 .date_cell_02 {  grid-area: date_cell_02; }
@@ -128,5 +130,12 @@ body {
 .date_cell_44 {  grid-area: date_cell_44; }
 .date_cell_45 {  grid-area: date_cell_45; }
 .date_cell_46 {  grid-area: date_cell_46; }
+.date_cell_50 {  grid-area: date_cell_50; }
+.date_cell_51 {  grid-area: date_cell_51; }
+.date_cell_52 {  grid-area: date_cell_52; }
+.date_cell_53 {  grid-area: date_cell_53; }
+.date_cell_54 {  grid-area: date_cell_54; }
+.date_cell_55 {  grid-area: date_cell_55; }
+.date_cell_56 {  grid-area: date_cell_56; }
 
 

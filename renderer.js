@@ -14,6 +14,7 @@ const $cw_cell_10=$('.cw_cell_10');
 const $cw_cell_20=$('.cw_cell_20');
 const $cw_cell_30=$('.cw_cell_30');
 const $cw_cell_40=$('.cw_cell_40');
+const $cw_cell_50=$('.cw_cell_50');
 
 // Create an array of references to the html elements.
 const $date_cell_array = [];
@@ -52,6 +53,15 @@ $date_cell_array.push({cell_ref: $('.date_cell_43'), cell_id: "date_cell_43"});
 $date_cell_array.push({cell_ref: $('.date_cell_44'), cell_id: "date_cell_44"});
 $date_cell_array.push({cell_ref: $('.date_cell_45'), cell_id: "date_cell_45"});
 $date_cell_array.push({cell_ref: $('.date_cell_46'), cell_id: "date_cell_46"});
+$date_cell_array.push({cell_ref: $('.date_cell_50'), cell_id: "date_cell_50"});
+$date_cell_array.push({cell_ref: $('.date_cell_51'), cell_id: "date_cell_51"});
+$date_cell_array.push({cell_ref: $('.date_cell_52'), cell_id: "date_cell_52"});
+$date_cell_array.push({cell_ref: $('.date_cell_53'), cell_id: "date_cell_53"});
+$date_cell_array.push({cell_ref: $('.date_cell_54'), cell_id: "date_cell_54"});
+$date_cell_array.push({cell_ref: $('.date_cell_55'), cell_id: "date_cell_55"});
+$date_cell_array.push({cell_ref: $('.date_cell_56'), cell_id: "date_cell_56"});
+
+
 
 ipc.on('Update-date_cell_array_today', (event, id, content) => {    
     var myElement = document.getElementById($date_cell_array[id].cell_id);
@@ -74,3 +84,4 @@ ipc.on('Update-cw_cell_10', (event, content) => {    $cw_cell_10.innerHTML=conte
 ipc.on('Update-cw_cell_20', (event, content) => {    $cw_cell_20.innerHTML=content;})
 ipc.on('Update-cw_cell_30', (event, content) => {    $cw_cell_30.innerHTML=content;})
 ipc.on('Update-cw_cell_40', (event, content) => {    $cw_cell_40.innerHTML=content;})
+ipc.on('Update-cw_cell_50', (event, content) => {    $cw_cell_50.innerHTML=content;})
