@@ -153,62 +153,18 @@ array_dates.push({xy_pos:"date_cell_54", weekday_num: 5, weekday:"Friday",		line
 array_dates.push({xy_pos:"date_cell_55", weekday_num: 6, weekday:"Saturday",	linear_pos:40, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_55'});
 array_dates.push({xy_pos:"date_cell_56", weekday_num: 0, weekday:"Sunday",		linear_pos:41, date_day: 0, date_data: "", CW_data: 0, event:'Update-date_cell_56'}); 
 
-
-function outta_way() {
-	mainWindow = new BrowserWindow({alwaysOnTop: true})
-
-	mainWindow.loadURL('file://'+path.join(__dirname, 'index.html'))
-
-	// the main window is finish loading up the index.html. Now it is
-	// time to print today's date and the calendar week number for 
-	// that date.
-	mainWindow.webContents.on('did-finish-load', () => {
-		// grab today's date.
-		var now_date = moment().format('dddd DD MMMM YYYY')
-		var now_cw = "CW " + moment().format('WW')
-
-		// mainWindow.webContents.send('Update-calendar-date', now_cw)
+var i_first_day = 0;
+var i_last_day = 0;
+var today_index = 0;
+var date_today = moment();
 
 
+// function to update the calendar based on the passed in date.
+function update_calendar(updated_date) {
 
-		console.log("now_date = " + now_date )
-		console.log("now_cw = " + now_cw )
-	})
-
-	mainWindow.webContents.openDevTools()
-
-	mainWindow.on('closed', () => {
-		mainWindow = null
-	})
-
-}
-
-
-app.on('ready', () => {
-
-	mainWindow = new BrowserWindow({
-		alwaysOnTop: false,
-		width: 400,
-		height: 349,
-		resizable: false,
-		title: "YetAnotherCalenderWeek"
-	});
-	mainWindow.loadURL('file://'+path.join(__dirname, 'index.html'))
-	// the main window is finish loading up the index.html. Now it is
-	// time to print today's date and the calendar week number for 
-	// that date.
-
-	// mainWindow.webContents.openDevTools();
-
-	// grab the today's date.
-	var date_today = moment(moment());
-	// var date_today = moment("12-25-1995", "MM-DD-YYYY");
+	date_today = moment(updated_date);
 	var date_1st = moment(date_today);
 	var date_found = false;
-	var today_index = 0;
-	var i_first_day = 0;
-	var i_last_day = 0;
-
 
 	const menu = Menu.buildFromTemplate(menu_template);
 	Menu.setApplicationMenu(menu);
@@ -264,6 +220,29 @@ app.on('ready', () => {
 	array_dates[i].date_day = date_1st.date();
 	array_dates[i].CW_data = date_1st.isoWeek();
 	array_dates[i].date_data = date_1st.toString();	
+}
+
+
+
+app.on('ready', () => {
+
+	mainWindow = new BrowserWindow({
+		alwaysOnTop: false,
+		width: 400,
+		height: 349,
+		resizable: false,
+		title: "YetAnotherCalenderWeek"
+	});
+	
+	mainWindow.loadURL('file://'+path.join(__dirname, 'index.html'))
+	// the main window is finish loading up the index.html. Now it is
+	// time to print today's date and the calendar week number for 
+	// that date.
+
+	// mainWindow.webContents.openDevTools();
+
+	update_calendar(moment(moment()));
+
 
 	mainWindow.webContents.on('did-finish-load', () => {
 		
