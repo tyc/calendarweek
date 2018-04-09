@@ -10,6 +10,10 @@ const BrowserWindow = electron.BrowserWindow
 const dialog = electron.dialog
 const Menu = electron.Menu
 
+// exporting the next month and previous month Interfaces.
+exports.prevMonth = prevMonth;
+exports.nextMonth = nextMonth;
+
 const menu_template = [
 	{
 	  label: 'File',
@@ -156,14 +160,71 @@ array_dates.push({xy_pos:"date_cell_56", weekday_num: 0, weekday:"Sunday",		line
 var i_first_day = 0;
 var i_last_day = 0;
 var today_index = 0;
-var date_today = moment();
+var date_today = moment(moment());
+var calendar_day = date_today; // the day that is currently shown
 
+function prevMonth() {
+	calendar_day.subtract('1', "months");
+
+	console.log(calendar_day);
+
+	update_calendar(calendar_day);
+	render_calendar();
+
+
+}
+
+function nextMonth() {
+	calendar_day.add('1', "months");
+
+	console.log(calendar_day);
+
+	update_calendar(calendar_day);
+	render_calendar();
+
+}
+
+function render_calendar() {
+			// loop through out array and print it out.
+			var i;
+			for (i=0; i<=41; i++) {
+				console.log("sending data " + i + ":" + array_dates[i].date_day.toString());
+				mainWindow.webContents.send("Update-date_cell_array" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
+			}
+	
+			
+			// change the colour of the days that are out of the current month
+			for (i=0; i<i_first_day; i++) {
+				console.log("before sending data " + i + ":" + array_dates[i].date_day.toString());
+				mainWindow.webContents.send("Update-out_of_month" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
+			}
+			for (i=i_last_day; i<=41; i++) {
+				console.log("after  sending data " + i + ":" + array_dates[i].date_day.toString());
+				mainWindow.webContents.send("Update-out_of_month" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
+			}
+	
+			if (today_index != 0) {
+				mainWindow.webContents.send("Update-date_cell_array_today" , array_dates[today_index].linear_pos, array_dates[today_index].date_day.toString());	
+			}
+	
+			// send across the CW number for the monday of the week.
+			mainWindow.webContents.send('Update-cw_cell_00', "CW"+array_dates[0].CW_data.toString());	
+			mainWindow.webContents.send('Update-cw_cell_10', "CW"+array_dates[7].CW_data.toString());	
+			mainWindow.webContents.send('Update-cw_cell_20', "CW"+array_dates[14].CW_data.toString());	
+			mainWindow.webContents.send('Update-cw_cell_30', "CW"+array_dates[21].CW_data.toString());	
+			mainWindow.webContents.send('Update-cw_cell_40', "CW"+array_dates[28].CW_data.toString());	
+			mainWindow.webContents.send('Update-cw_cell_50', "CW"+array_dates[35].CW_data.toString());	
+	
+			// send across the two headers
+			mainWindow.webContents.send('Update-calendar-cw', "CW"+calendar_day.format('WW'));
+			mainWindow.webContents.send('Update-calendar-date', calendar_day.format('MMMM YYYY'));
+}
 
 // function to update the calendar based on the passed in date.
 function update_calendar(updated_date) {
 
-	date_today = moment(updated_date);
-	var date_1st = moment(date_today);
+	calendar_day = moment(updated_date);
+	var date_1st = moment(calendar_day);
 	var date_found = false;
 
 	const menu = Menu.buildFromTemplate(menu_template);
@@ -173,6 +234,7 @@ function update_calendar(updated_date) {
 	// set the date to be the 1st day of the month
 	date_1st.date(1);
 
+	today_index = 0;
 	// find the first date and start filling.
 	for (i = 0; i <= 41; i++) {
 		if (date_found == false) {
@@ -190,12 +252,17 @@ function update_calendar(updated_date) {
 				i_copy = i;
 				i_first_day = i_copy;
 				i_last_day = i_first_day + date_1st.daysInMonth();
+
+				console.log("i_first_day " + i_first_day);
+				console.log("i_last_day " + i_last_day);
 			}	
 		} else {
 			date_1st.add(1, 'days');
 
 			if ((date_1st.isSame(date_today)) == true) {
 				today_index = i;
+				console.log(date_1st);
+				console.log(date_today);
 			}
 
 			// the date will roll over automatically to the next month
@@ -206,7 +273,7 @@ function update_calendar(updated_date) {
 	}
 
 	// back fill the dates in the previous month
-	date_1st = moment(date_today);
+	date_1st = moment(calendar_day);
 	date_1st.date(1);
 	i_copy--;
 	for (i = i_copy; i > 0; i--) {
@@ -223,6 +290,7 @@ function update_calendar(updated_date) {
 }
 
 
+// the main code starts here
 
 app.on('ready', () => {
 
@@ -231,7 +299,7 @@ app.on('ready', () => {
 		width: 400,
 		height: 349,
 		resizable: false,
-		title: "YetAnotherCalenderWeek"
+		title: "CalenderWeek"
 	});
 	
 	mainWindow.loadURL('file://'+path.join(__dirname, 'index.html'))
@@ -241,40 +309,9 @@ app.on('ready', () => {
 
 	// mainWindow.webContents.openDevTools();
 
-	update_calendar(moment(moment()));
-
-
+	update_calendar(date_today);
 	mainWindow.webContents.on('did-finish-load', () => {
-		
-		// loop through out array and print it out.
-		var i;
-		for (i=0; i<=41; i++) {
-			// console.log("sending data " + array_dates[i].date_day.toString());
-			mainWindow.webContents.send("Update-date_cell_array" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
-		}
-
-		// change the colour of the days that are out of the current month
-		for (i=0; i<i_first_day; i++) {
-			mainWindow.webContents.send("Update-out_of_month" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
-		}
-		for (i=i_last_day; i<=41; i++) {
-			mainWindow.webContents.send("Update-out_of_month" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
-		}
-
-
-		mainWindow.webContents.send("Update-date_cell_array_today" , array_dates[today_index].linear_pos, array_dates[today_index].date_day.toString());	
-
-		// send across the CW number for the monday of the week.
-		mainWindow.webContents.send('Update-cw_cell_00', "CW"+array_dates[0].CW_data.toString());	
-		mainWindow.webContents.send('Update-cw_cell_10', "CW"+array_dates[7].CW_data.toString());	
-		mainWindow.webContents.send('Update-cw_cell_20', "CW"+array_dates[14].CW_data.toString());	
-		mainWindow.webContents.send('Update-cw_cell_30', "CW"+array_dates[21].CW_data.toString());	
-		mainWindow.webContents.send('Update-cw_cell_40', "CW"+array_dates[28].CW_data.toString());	
-		mainWindow.webContents.send('Update-cw_cell_50', "CW"+array_dates[35].CW_data.toString());	
-
-		// send across the two headers
-		mainWindow.webContents.send('Update-calendar-cw', "CW"+date_today.format('WW'));
-		mainWindow.webContents.send('Update-calendar-date', date_today.format('MMMM YYYY'));
+		render_calendar();
 	})
 
 	mainWindow.on('closed', () => {

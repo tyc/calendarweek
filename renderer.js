@@ -5,6 +5,8 @@ const remote = electron.remote
 const clipboard = remote.clipboard
 const shell = electron.shell
 
+const mainProcess = remote.require('./main');
+
 const $ = selector => document.querySelector(selector)
 
 const $calendar_date_cell=$('.calendar_date_cell')
@@ -15,6 +17,8 @@ const $cw_cell_20=$('.cw_cell_20');
 const $cw_cell_30=$('.cw_cell_30');
 const $cw_cell_40=$('.cw_cell_40');
 const $cw_cell_50=$('.cw_cell_50');
+const $prev_mth_button=$('#prev_mth');
+const $next_mth_button=$('#next_mth');
 
 // Create an array of references to the html elements.
 const $date_cell_array = [];
@@ -75,7 +79,14 @@ ipc.on('Update-out_of_month', (event, id, content) => {
     
 })
 
-ipc.on('Update-date_cell_array', (event, id, content) => {    $date_cell_array[id].cell_ref.innerHTML=content;})
+// render the cell for the day
+ipc.on('Update-date_cell_array', (event, id, content) => {    
+    $date_cell_array[id].cell_ref.innerHTML=content;
+
+    var myElement = document.getElementById($date_cell_array[id].cell_id);
+    myElement.style.backgroundColor="#58D68D";
+    myElement.style.color="#000000";
+})
 
 ipc.on('Update-calendar-date', (event, content) => {    $calendar_date_cell.innerHTML=content;})
 
@@ -85,3 +96,11 @@ ipc.on('Update-cw_cell_20', (event, content) => {    $cw_cell_20.innerHTML=conte
 ipc.on('Update-cw_cell_30', (event, content) => {    $cw_cell_30.innerHTML=content;})
 ipc.on('Update-cw_cell_40', (event, content) => {    $cw_cell_40.innerHTML=content;})
 ipc.on('Update-cw_cell_50', (event, content) => {    $cw_cell_50.innerHTML=content;})
+
+$next_mth_button.addEventListener('click', () => {
+    mainProcess.nextMonth();
+})
+
+$prev_mth_button.addEventListener('click', () => {
+    mainProcess.prevMonth();
+})
