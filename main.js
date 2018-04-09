@@ -161,24 +161,16 @@ var i_first_day = 0;
 var i_last_day = 0;
 var today_index = 0;
 var date_today = moment(moment());
-var calendar_day = date_today; // the day that is currently shown
+var calendar_day = moment(date_today); // the day that is currently shown
 
 function prevMonth() {
 	calendar_day.subtract('1', "months");
-
-	console.log(calendar_day);
-
 	update_calendar(calendar_day);
 	render_calendar();
-
-
 }
 
 function nextMonth() {
 	calendar_day.add('1', "months");
-
-	console.log(calendar_day);
-
 	update_calendar(calendar_day);
 	render_calendar();
 
@@ -188,18 +180,18 @@ function render_calendar() {
 			// loop through out array and print it out.
 			var i;
 			for (i=0; i<=41; i++) {
-				console.log("sending data " + i + ":" + array_dates[i].date_day.toString());
+				// console.log("sending data " + i + ":" + array_dates[i].date_day.toString());
 				mainWindow.webContents.send("Update-date_cell_array" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
 			}
 	
 			
 			// change the colour of the days that are out of the current month
 			for (i=0; i<i_first_day; i++) {
-				console.log("before sending data " + i + ":" + array_dates[i].date_day.toString());
+				// console.log("before sending data " + i + ":" + array_dates[i].date_day.toString());
 				mainWindow.webContents.send("Update-out_of_month" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
 			}
 			for (i=i_last_day; i<=41; i++) {
-				console.log("after  sending data " + i + ":" + array_dates[i].date_day.toString());
+				// console.log("after  sending data " + i + ":" + array_dates[i].date_day.toString());
 				mainWindow.webContents.send("Update-out_of_month" , array_dates[i].linear_pos, array_dates[i].date_day.toString());	
 			}
 	
@@ -223,13 +215,9 @@ function render_calendar() {
 // function to update the calendar based on the passed in date.
 function update_calendar(updated_date) {
 
-	calendar_day = moment(updated_date);
-	var date_1st = moment(calendar_day);
+//	calendar_day = moment(updated_date);
+	var date_1st = moment(updated_date);
 	var date_found = false;
-
-	const menu = Menu.buildFromTemplate(menu_template);
-	Menu.setApplicationMenu(menu);
-
 
 	// set the date to be the 1st day of the month
 	date_1st.date(1);
@@ -253,16 +241,17 @@ function update_calendar(updated_date) {
 				i_first_day = i_copy;
 				i_last_day = i_first_day + date_1st.daysInMonth();
 
-				console.log("i_first_day " + i_first_day);
-				console.log("i_last_day " + i_last_day);
+				// console.log("i_first_day " + i_first_day);
+				// console.log("i_last_day " + i_last_day);
 			}	
 		} else {
 			date_1st.add(1, 'days');
 
 			if ((date_1st.isSame(date_today)) == true) {
 				today_index = i;
-				console.log(date_1st);
-				console.log(date_today);
+				// console.log("same day detection +++")
+				// console.log(date_1st);
+				// console.log(date_today);
 			}
 
 			// the date will roll over automatically to the next month
@@ -275,18 +264,23 @@ function update_calendar(updated_date) {
 	// back fill the dates in the previous month
 	date_1st = moment(calendar_day);
 	date_1st.date(1);
-	i_copy--;
-	for (i = i_copy; i > 0; i--) {
+	
+	// if i_copy is 0, then there is no prevous days to back fill in.
+	if (i_copy > 0) {
+
+		i_copy--;
+		for (i = i_copy; i > 0; i--) {
+			date_1st.subtract(1, 'days');
+			array_dates[i].date_day = date_1st.date();
+			array_dates[i].CW_data = date_1st.isoWeek();
+			array_dates[i].date_data = date_1st.toString();		
+		}
+
 		date_1st.subtract(1, 'days');
 		array_dates[i].date_day = date_1st.date();
 		array_dates[i].CW_data = date_1st.isoWeek();
-		array_dates[i].date_data = date_1st.toString();		
-	}
-
-	date_1st.subtract(1, 'days');
-	array_dates[i].date_day = date_1st.date();
-	array_dates[i].CW_data = date_1st.isoWeek();
-	array_dates[i].date_data = date_1st.toString();	
+		array_dates[i].date_data = date_1st.toString();
+	}	
 }
 
 
@@ -309,7 +303,11 @@ app.on('ready', () => {
 
 	// mainWindow.webContents.openDevTools();
 
+	const menu = Menu.buildFromTemplate(menu_template);
+	Menu.setApplicationMenu(menu);
+
 	update_calendar(date_today);
+
 	mainWindow.webContents.on('did-finish-load', () => {
 		render_calendar();
 	})
