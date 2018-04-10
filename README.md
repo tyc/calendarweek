@@ -2,6 +2,17 @@
 
 ![Image of the app](https://github.com/tyc/calendarweek/blob/master/images/Calendar_Week.png)
 
+# Why did you write Calendar Week
+
+I wrote Calendar Week as a way of getting back to codding. Electron JS was a convinient way of writing code and can write code on a MacOS. Especially when I can just download it, install it and start coding without paying any money.
+
+The only thing is that I am most experience with C and assembly. Javascript is very new for me. It is almost oo high level with many abstraction level.
+
+# Calendar Week
+
+It starts off with displaying the current month and the current day is highlighted. Each row represents a week, the starting day is a Monday. It shows the current month with a colour focus. It may also show the trailing days from the previous month and the starting days from the next months.
+
+ 
 
 # How it know where to put the dates?
 
