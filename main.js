@@ -291,7 +291,7 @@ app.on('ready', () => {
 	mainWindow = new BrowserWindow({
 		alwaysOnTop: false,
 		width: 400,
-		height: 349,
+		height: 341,
 		resizable: false,
 		title: "CalenderWeek"
 	});
